@@ -1,19 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <title>Filmy</title>
-    <link rel="stylesheet" href="style.css">
-    <script type="module" src="index.js"></script>
-  </head>
-  <body>
-    <div class="container">
+    <link href="style.css" rel="stylesheet">
+    <script src="index.js" type="module"></script>
+</head>
+<body>
+<div class="container">
 
-      <h1>Filmy</h1>
-
-      <!-- toto je DIV, do kterého budeme vypisovat seznam filmů -->
-      <div id="movies">
+    <h1>Filmy</h1>
+    <div class="movie">
+        <button id="fromNewest" type="submit">Od nejnovějšího</button>
+        <button id="fromOldest" type="submit">Od nejstaršího</button>
+    </div>
+    <!-- toto je DIV, do kterého budeme vypisovat seznam filmů -->
+    <div id="movies">
 
 
         <!-- kód pro každý jednotlivý film bude vypadat takto -->
@@ -27,8 +30,8 @@
         -->
 
 
-      </div><!-- konec #movies -->
+    </div><!-- konec #movies -->
 
-    </div><!-- konec .container-->
-  </body>
+</div><!-- konec .container-->
+</body>
 </html>
