@@ -1,6 +1,8 @@
 'use strict';
 
-const Film = ({title, url, posterUrl, genres, year}) => {
+let movieList;
+
+const Movie = ({title, url, posterUrl, genres, year}) => {
     return ` 
             <div class="movie">
                 <img class="movie__img" src=${posterUrl} alt=${title}>
@@ -12,21 +14,35 @@ const Film = ({title, url, posterUrl, genres, year}) => {
         `;
 };
 
-const MovieList = (items) => {
-    items.sort((filmA,filmB) => (filmA.title > filmB.title) ? 1 : ((filmB.title > filmA.title) ? -1 : 0))
-    document.querySelector('#movies').innerHTML = items.map((item) => {
-        return Film(item);
+const showMovies = (movies) => {
+    document.querySelector('#movies').innerHTML = movies.map((movie) => {
+        return Movie(movie);
     }).join('');
 }
 
-fetch('https://apps.kodim.cz/daweb/trening-api/apis/movie-api/movies')
-    .then((resp) => resp.json())
-    .then((data) => MovieList(data));
-
 const sortFromNewest = (e) => {
+    console.log('jsem tady');
     e.preventDefault();
-    items.sort((filmA, filmB) => filmB.year - filmA.year);
+    movieList.sort((filmA, filmB) => filmB.year - filmA.year);
+    console.log(movieList);
+    showMovies(movieList);
 };
 
-document.querySelector('#fromNewest').addEventListener('submit', sortFromNewest);
-document.querySelector('#fromOldest').addEventListener('submit', sortFromNewest.reverse());
+const sortFromOldest = (e) => {
+    console.log('jsem v newest');
+    e.preventDefault();
+    movieList.sort((filmA, filmB) => filmA.year - filmB0.year);
+    console.log(movieList);
+    showMovies(movieList);
+};
+
+document.querySelector('#fromNewest').addEventListener('click', sortFromNewest);
+document.querySelector('#fromOldest').addEventListener('click', sortFromOldest);
+
+fetch('https://apps.kodim.cz/daweb/trening-api/apis/movie-api/movies')
+    .then((resp) => resp.json())
+    .then((data) => {
+        movieList = data;
+        movieList.sort((filmA, filmB) => (filmA.title > filmB.title) ? 1 : ((filmB.title > filmA.title) ? -1 : 0));
+        showMovies(movieList);
+    });
